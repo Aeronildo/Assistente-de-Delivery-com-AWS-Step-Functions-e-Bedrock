@@ -46,11 +46,11 @@ Modifique a função Lambda ResponderCliente para integrar com o Bedrock e gerar
 
 As funções Lambda incluem:
 
-ConfirmarPedido: Valida o pedido e inicia o processo de entrega.
-ConsultarStatus: Consulta o DynamoDB para verificar o status atual do pedido.
-MonitorarEntrega: Monitora o progresso do pedido e atualiza seu status.
-NotificarCliente: Envia notificações sobre o status e conclusão do pedido via Amazon SNS.
-ResponderCliente: Usa o AWS Bedrock para gerar uma resposta personalizada com base na consulta do cliente.
+1. **ConfirmarPedido**: Valida o pedido e inicia o processo de entrega.
+2. **ConsultarStatus**: Consulta o DynamoDB para verificar o status atual do pedido.
+3. **MonitorarEntrega**: Monitora o progresso do pedido e atualiza seu status.
+4. **NotificarCliente**: Envia notificações sobre o status e conclusão do pedido via Amazon SNS.
+5. **ResponderCliente**: Usa o AWS Bedrock para gerar uma resposta personalizada com base na consulta do cliente.
 
 ### Banco de Dados - Amazon DynamoDB
 Crie uma tabela no DynamoDB para armazenar informações de pedidos com os seguintes campos sugeridos:
