@@ -1,0 +1,47 @@
+{
+  "Comment": "Assistente de Delivery com Step Functions e AWS Bedrock",
+  "StartAt": "ReceberPedido",
+  "States": {
+    "ReceberPedido": {
+      "Type": "Pass",
+      "Result": "Pedido Recebido",
+      "Next": "ConfirmarPedido"
+    },
+    "ConfirmarPedido": {
+      "Type": "Task",
+      "Resource": "arn:aws:lambda:REGIÃO:ID_FUNÇÃO:function:ConfirmarPedido",
+      "Next": "PerguntasClientes"
+    },
+    "PerguntasClientes": {
+      "Type": "Choice",
+      "Choices": [
+        {
+          "Variable": "$.pergunta",
+          "StringEquals": "Qual é o status do meu pedido?",
+          "Next": "ConsultarStatus"
+        }
+      ],
+      "Default": "MonitorarEntrega"
+    },
+    "ConsultarStatus": {
+      "Type": "Task",
+      "Resource": "arn:aws:lambda:REGIÃO:ID_FUNÇÃO:function:ConsultarStatus",
+      "Next": "ResponderCliente"
+    },
+    "MonitorarEntrega": {
+      "Type": "Task",
+      "Resource": "arn:aws:lambda:REGIÃO:ID_FUNÇÃO:function:MonitorarEntrega",
+      "Next": "NotificarCliente"
+    },
+    "NotificarCliente": {
+      "Type": "Task",
+      "Resource": "arn:aws:lambda:REGIÃO:ID_FUNÇÃO:function:NotificarCliente",
+      "End": true
+    },
+    "ResponderCliente": {
+      "Type": "Task",
+      "Resource": "arn:aws:lambda:REGIÃO:ID_FUNÇÃO:function:ResponderCliente",
+      "End": true
+    }
+  }
+}
